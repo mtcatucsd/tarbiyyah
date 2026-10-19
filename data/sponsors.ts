@@ -8,8 +8,9 @@ export type Sponsor = {
 };
 
 export const sponsors: Sponsor[] = [
-  { id: "manara-west", name: "Manara West", logo: { src: "/sponsors/manara-west.webp", width: 520, height: 150, onDark: true } },
-  { id: "sponsor-2", name: "Sponsor Name" },
-  { id: "sponsor-3", name: "Sponsor Name" },
-  { id: "sponsor-4", name: "Sponsor Name" },
+  { id: "manara-west", name: "Manara West", logo: { src: "/sponsors/manara-west.webp", width: 786, height: 228 } },
+  { id: "cair-ca", name: "CAIR California", logo: { src: "/sponsors/Full-Color_Logo_CAIR_CA.svg", width: 1061, height: 336 } },
+  { id: "mpac", name: "MPAC", logo: { src: "/sponsors/MPAC-Short-BlueBlack.webp", width: 3381, height: 1441 } },
+  { id: "idea", name: "IDEA", logo: { src: "/sponsors/IDEA.webp", width: 499, height: 229 } },
+  { id: "zakat-foundation", name: "Zakat Foundation", logo: { src: "/sponsors/ZakatFoundation.webp", width: 260, height: 260 } },
 ];

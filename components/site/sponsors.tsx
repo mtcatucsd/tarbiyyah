@@ -7,12 +7,12 @@ export function Sponsors() {
   return (
     <section id="sponsors" className="qe-section grid justify-items-center gap-8">
       <p data-anim="lines" className="qe-lead-sm">With thanks to the sponsors who make the day possible.</p>
-      <ul data-anim="stagger" className="grid w-full max-w-[880px] grid-cols-2 gap-5 md:grid-cols-4">
+      <ul data-anim="stagger" className="flex w-full max-w-[880px] flex-wrap justify-center gap-5">
         {sponsors.map((s) => (
           <li
             key={s.id}
             className={cn(
-              "grid aspect-[3/2] place-items-center rounded-[3px] p-5",
+              "grid aspect-[3/2] w-[calc(50%-0.625rem)] place-items-center md:w-[calc(25%-0.9375rem)] rounded-[3px] p-5",
               s.logo ? (s.logo.onDark ? "bg-ink-deep" : "border border-ink/20 bg-[#fbf8f0]") : "border border-dashed border-ink/35 bg-[#fbf8f0]",
             )}
           >

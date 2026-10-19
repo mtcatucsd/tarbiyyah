@@ -102,10 +102,12 @@ export function Gallery() {
           <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
         </button>
       </div>
-      <Link href="/gallery/" className="qe-pill justify-self-center">
-        View the gallery
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
-      </Link>
+      <div className="hidden justify-center md:flex">
+        <Link href="/gallery/" className="qe-pill">
+          View the gallery
+          <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+        </Link>
+      </div>
     </section>
   );
 }

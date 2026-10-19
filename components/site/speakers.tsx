@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { speakers } from "@/data/speakers";
 import { cn } from "@/lib/utils";
@@ -11,7 +12,6 @@ export function Speakers() {
       <div className="grid justify-items-center gap-3">
         <p className="mono-label">Speakers</p>
         <h2 data-anim="lines" className="qe-lead">Voices of the conference</h2>
-        <p className="qe-body">More details coming soon.</p>
       </div>
       <ul data-scene="speakers" className="grid w-full max-w-[1100px] grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4">
         {speakers.map((s, i) => (
@@ -20,7 +20,9 @@ export function Speakers() {
               <DialogTrigger asChild>
                 <button type="button" className="group grid w-full justify-items-center gap-4 text-center">
                   <span className={cn("qe-print block w-full transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:rotate-0 group-hover:-translate-y-1", tilts[i % 4])}>
-                    <span className="plate portrait !rounded-[2px] !border-0" aria-hidden="true" />
+                    <span className="plate relative block aspect-[4/5]">
+                      <Image src={s.photo} alt={s.name} fill sizes="(max-width: 768px) 45vw, 260px" className="object-cover object-top" />
+                    </span>
                   </span>
                   <span className="font-display text-2xl leading-none text-ink-deep">{s.name}</span>
                   <span className="mono-label">{s.role}</span>
