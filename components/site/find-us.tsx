@@ -1,13 +1,8 @@
-import { EtchGroup } from "@/components/engraving/etch";
-import { GEISEL_BOUNDS, geiselParts } from "@/components/engraving/geisel";
-import { Plant } from "@/components/engraving/plant";
+import Image from "next/image";
 import { venues } from "@/data/venues";
 import { directionsUrl, getVenue, mapEmbedUrl } from "@/lib/event-data";
 
-const geisel = geiselParts();
-const B = GEISEL_BOUNDS;
-
-/** The venue as Quiet Edition's postcard: an engraved view of campus on a tilted print, then the details. */
+/** The venue as Quiet Edition's postcard: a photo from last year's conference on a print, then the details. */
 export function FindUs() {
   const venue = getVenue(venues, "student-services-center")!;
   const room = venue.rooms.find((r) => r.id === "mpr")!;
@@ -20,14 +15,9 @@ export function FindUs() {
 
       <div className="grid w-full max-w-[1100px] items-center gap-6 md:grid-cols-[1fr_1.15fr] md:gap-10">
         <div className="grid justify-items-center gap-5">
-          <div data-anim="draw" data-scene="venue-postcard" className="qe-print w-full max-w-[480px]">
+          <div data-scene="venue-postcard" className="qe-print w-full max-w-[340px]">
             <div className="plate">
-              <svg viewBox={`${B.x - 120} ${B.y - 30} ${B.w + 240} ${B.h + 30}`} className="h-auto w-full" role="img" aria-label="Engraving of Geisel Library between palms">
-                <rect x={B.x - 120} y={B.y - 30} width={B.w + 240} height={B.h + 30} fill="url(#hatch-light)" opacity="0.35" />
-                <Plant kind="palm" x={-420} base={0} h={300} variant={0} />
-                <Plant kind="palm" x={430} base={0} h={270} variant={2} flip />
-                <EtchGroup parts={geisel} />
-              </svg>
+              <Image src="/photos/venue.webp" alt="A speaker at the table on stage, between two flower arrangements, with the audience in front, beneath the Art of Adab slide" width={800} height={1200} sizes="(max-width: 768px) 85vw, 320px" className="block h-auto w-full" />
             </div>
           </div>
           <p data-anim="rise" className="qe-body">
