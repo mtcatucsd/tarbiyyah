@@ -40,10 +40,19 @@ export function Gallery() {
     };
     const queue = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
+    // Native lazy loading only fetches a card once it is swiped up next to the viewport, so photos would pop in
+    // mid-swipe. Instead, every card's photo starts loading as the row comes within a screen of view.
+    const near = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      el.querySelectorAll("img").forEach((img) => { img.loading = "eager"; });
+      near.disconnect();
+    }, { rootMargin: "100% 0px" });
+    near.observe(el);
     el.addEventListener("scroll", queue, { passive: true });
     window.addEventListener("resize", queue);
     return () => {
       cancelAnimationFrame(frame);
+      near.disconnect();
       el.removeEventListener("scroll", queue);
       window.removeEventListener("resize", queue);
     };
@@ -79,7 +88,7 @@ export function Gallery() {
     <section id="gallery" data-scene="gallery" className="grid overflow-x-clip gap-4 py-4 md:gap-6 md:py-8" aria-label="Photos from last year's conference">
       <p data-anim="lines" className="qe-lead-sm px-5 text-center">From last year&apos;s conference, The Art of Adab.</p>
       <ul ref={row} className="pcar" tabIndex={0} aria-label="Photo carousel" onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
-        {photos.map((p, i) => (
+        {photos.map((p) => (
           <li key={p.id} className="pcar-card" style={{ "--fx": p.fx } as CSSProperties}>
             <Image
               src={`/photos/gallery/${p.id}-md.webp`}
@@ -89,7 +98,7 @@ export function Gallery() {
               sizes="(max-width: 640px) 140vw, 690px"
               draggable={false}
               className="pcar-img"
-              loading={i < 3 ? "eager" : "lazy"}
+              loading="lazy"
             />
           </li>
         ))}

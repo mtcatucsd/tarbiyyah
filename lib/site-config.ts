@@ -2,7 +2,12 @@
 export const siteConfig = {
   name: "Tarbiyyah Conference",
   year: 2026,
+  siteUrl: "https://www.tarbiyyahconferenceatucsd.org", // the live address: canonical links, share previews, sitemap
+  // The summary search engines, link previews and AI assistants show.
+  description:
+    "Tarbiyyah Conference 2026, presented by the Muslim Student Association (MSA) at UC San Diego: a day of lectures, workshops and panels on Ibad al-Rahman, Servants of the Most Merciful. Sunday, November 1, 2026, 12 PM – 8 PM, Multipurpose Room, Student Services Center, UC San Diego, La Jolla.",
   eventDate: "2026-11-01T12:00:00-08:00",
+  eventEnd: "2026-11-01T20:00:00-08:00",
   dateText: "Sunday, November 1, 2026",
   timeText: "12 PM – 8 PM",
   venueText: "Student Services Center · MPR",

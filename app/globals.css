@@ -162,6 +162,15 @@ html.motion [data-in-view="true"] .hatch-in { opacity: 1; }
   .geisel .etch-line { stroke-width: 1.7; }
   .geisel .etch-bold { stroke-width: 2.8; }
 }
+/* Phones, hero only: a taller scene closes the gap under the copy, and the Geisel photo grows. Its frame has clear
+   margins beside the building, so it overlaps the palm strips (negative margins) and sits in front of them: the
+   palms show at the screen edges and tuck in behind the building instead of being squeezed out. */
+@media (max-width: 640px) {
+  .night.hero-vars { --sky-h: clamp(170px, 64vw, 430px); --geisel-scale: 0.92; --geisel-max-w: 98vw; }
+  .night.hero-vars { --reel-h: clamp(180px, 35svh, 340px); } /* the photo rows run down to the building, as on desktop */
+  .night .geisel { position: relative; z-index: 1; margin-inline: -12vw; }
+  .night .geisel-side { height: 66%; }
+}
 @media (min-width: 641px) and (max-height: 760px) {
   .hero-vars { --sky-h: clamp(150px, min(24vw, 34vh), 300px); --hero-top: 4.5rem; }
 }
@@ -216,6 +225,7 @@ html.motion [data-in-view="true"] .hatch-in { opacity: 1; }
   .night-grain { display: none; }
   .reel-card img { filter: grayscale(0.7) brightness(1.4) contrast(1.05); }
   .night-cloud { animation: none; }
+  .night .title-svg { filter: none; } /* the drop shadow is re-filtered on every frame of the handwriting; the scrim already sets the type off */
 }
 /* A dark pool behind the type so it always reads over the photos. */
 .night-scrim { background: radial-gradient(ellipse 62% 48% at 50% 40%, rgb(8 36 40 / 0.86), rgb(8 36 40 / 0.5) 55%, transparent 80%); }
@@ -337,6 +347,28 @@ html.motion [data-in-view="true"] .hatch-in { opacity: 1; }
   border: 2px solid var(--ink); box-shadow: 0 12px 26px -14px rgb(31 79 92 / 0.45); background: var(--paper-shade); }
 .pcar-img { position: absolute; top: 0; left: calc(-100% * var(--fx)); width: 200%; max-width: none; height: 100%; object-fit: cover; will-change: transform; }
 @media (max-width: 640px) { .pcar { -webkit-mask-image: none; mask-image: none; } }
+
+/* Sponsor ticker (components/site/sponsors.tsx): logo prints in one row running edge to edge, moved only by the
+   sponsors scene's transform. Cards space themselves with margin (not gap) so half the track is exactly one copy. */
+.ticker { justify-self: stretch; min-width: 0; margin-inline: calc(-1 * var(--gutter, 1.25rem)); overflow: clip; padding-block: 14px 26px; touch-action: pan-y; }
+.ticker-track { display: flex; width: max-content; list-style: none; will-change: transform; }
+.ticker-card { --tilt: -2deg; flex: none; display: grid; place-items: center; width: clamp(136px, 15vw, 200px); aspect-ratio: 3 / 2;
+  margin-right: clamp(18px, 2.4vw, 36px); padding: 0 clamp(14px, 1.6vw, 22px); border-radius: 4px; background: #fbf8f0; transform: rotate(var(--tilt));
+  box-shadow: 0 1px 1px rgb(31 79 92 / 0.14), 0 14px 28px -12px rgb(31 79 92 / 0.32); user-select: none; -webkit-user-select: none; }
+.ticker-card:nth-child(4n + 2) { --tilt: 1deg; }
+.ticker-card:nth-child(4n + 3) { --tilt: -1deg; }
+.ticker-card:nth-child(4n) { --tilt: 2deg; }
+.ticker-card-dark { background: var(--ink-deep); }
+.ticker-logo { width: auto; height: auto; max-width: 100%; max-height: 62%; object-fit: contain; pointer-events: none; }
+/* Fade the row out at the screen edges, on desktop only (a full-width mask costs phones a repaint per frame). */
+@media (hover: hover) and (pointer: fine) {
+  .ticker { -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+}
+/* Still: just the real cards, centred and wrapping. (No-JS gets the same from the noscript style in app/layout.tsx.) */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { width: auto; flex-wrap: wrap; justify-content: center; row-gap: 20px; padding-inline: var(--gutter, 1.25rem); }
+  .ticker-card[data-repeat] { display: none; }
+}
 
 /* Gallery page (app/gallery/page.tsx): a full-screen canvas with a back-to-home button floating over it. */
 .gpage { position: fixed; inset: 0; background: var(--paper); }

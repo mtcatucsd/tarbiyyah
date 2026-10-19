@@ -1,5 +1,6 @@
 import { Intro, LanternBand } from "@/components/site/qe/blocks";
 import { Closing } from "@/components/site/closing";
+import { EventSchema } from "@/components/site/event-schema";
 import { Faq } from "@/components/site/faq";
 import { FindUs } from "@/components/site/find-us";
 import { Gallery } from "@/components/site/gallery";
@@ -32,6 +33,7 @@ export default function Home() {
         <Closing />
       </main>
       <MotionRoot />
+      <EventSchema />
     </>
   );
 }

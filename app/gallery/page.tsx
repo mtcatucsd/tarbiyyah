@@ -4,8 +4,9 @@ import { GalleryGrid } from "@/components/site/gallery-grid";
 import { galleryPhotos } from "@/data/gallery";
 
 export const metadata: Metadata = {
-  title: "Gallery — Tarbiyyah Conference 2025, The Art of Adab",
+  title: { absolute: "Gallery — Tarbiyyah Conference 2025, The Art of Adab | MSA at UC San Diego" },
   description: `All ${galleryPhotos.length} photos from last year's Tarbiyyah Conference, The Art of Adab, presented by MSA at UC San Diego.`,
+  alternates: { canonical: "/gallery/" },
 };
 
 // Every photo from last year on one endless canvas (components/site/gallery-grid.tsx), with only a back-to-home button
