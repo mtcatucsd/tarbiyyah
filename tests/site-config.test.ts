@@ -13,10 +13,10 @@ describe("siteConfig matches the event", () => {
     expect(siteConfig.dateText).toBe(fmt.format(startsAt));
     expect(siteConfig.dateText).toBe("Sunday, November 1, 2026");
   });
-  it("names the venue, the theme and the 12 PM - 8 PM hours", () => {
+  it("names the venue, the theme and the 11 AM - 6:40 PM hours", () => {
     expect(siteConfig.venueText).toContain("MPR");
     expect(siteConfig.theme).toContain("Ibad al-Rahman");
-    expect(siteConfig.timeText).toBe("12 PM – 8 PM");
+    expect(siteConfig.timeText).toBe("11 AM – 6:40 PM");
   });
   it("sends Get tickets to Luma (or is still empty, which scrolls to the tickets section)", () => {
     const url: string = siteConfig.ticketUrl;

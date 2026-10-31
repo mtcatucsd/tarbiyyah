@@ -17,12 +17,12 @@ describe("seed data integrity", () => {
       expect(venue!.rooms.some((r) => r.id === s.roomId), s.id).toBe(true);
     }
   });
-  it("the conference is one day, Sunday Nov 1 2026, 12pm-8pm Los Angeles time", () => {
-    const fmt = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric", hour: "numeric", timeZone: "America/Los_Angeles" });
+  it("the conference is one day, Sunday Nov 1 2026, from the 11am check-in to the 6:40pm close, Los Angeles time", () => {
+    const fmt = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
     const starts = sessions.map((s) => new Date(s.start).getTime());
     const ends = sessions.map((s) => new Date(s.end).getTime());
-    expect(fmt.format(Math.min(...starts))).toBe("Sunday, November 1 at 12 PM");
-    expect(fmt.format(Math.max(...ends))).toBe("Sunday, November 1 at 8 PM");
+    expect(fmt.format(Math.min(...starts))).toBe("Sunday, November 1 at 11:00 AM");
+    expect(fmt.format(Math.max(...ends))).toBe("Sunday, November 1 at 6:40 PM");
     expect(new Set(sessions.map((s) => s.day))).toEqual(new Set([1]));
   });
   it("the MPR venue is the Student Services Center Multipurpose Room", () => {
@@ -84,11 +84,15 @@ describe("mapEmbedUrl", () => {
 });
 
 describe("session summaries", () => {
-  it("every session has a one-line summary of 1–60 characters", () => {
+  it("a session's optional one-line summary is 1–60 characters", () => {
     for (const s of sessions) {
+      if (s.summary === undefined) continue;
       expect(s.summary.trim().length, s.id).toBeGreaterThan(0);
       expect(s.summary.length, s.id).toBeLessThanOrEqual(60);
     }
+  });
+  it("the three lectures are labelled by number", () => {
+    expect(sessions.filter((s) => s.summary?.startsWith("Lecture #")).map((s) => s.summary)).toEqual(["Lecture #1", "Lecture #2", "Lecture #3"]);
   });
 });
 

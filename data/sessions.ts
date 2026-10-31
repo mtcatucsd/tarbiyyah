@@ -1,18 +1,24 @@
 import type { Session } from "./types";
 
-// Sunday, November 1, 2026, 11 AM check-in through the night market (Pacific Standard Time: daylight saving ends that morning).
-// The night market runs "onward" in the programme; its end time is the event's 8 PM close.
-const base = { day: 1 as const, venueId: "student-services-center", roomId: "mpr", description: "Placeholder description of the session." };
+// Sunday, November 1, 2026 (Pacific Standard Time: daylight saving ends that morning), the tentative programme from the
+// organisers. Everything is in the MPR. A session's end is when the next one starts; the check-in and the night market
+// have no printed end, so the night market's `end` is its start (it carries on after the programme).
+// `summary` is an optional second line under the title; the lectures use it for their number.
+const at = (time: string) => `2026-11-01T${time}:00-08:00`;
+const base = { day: 1 as const, venueId: "student-services-center", roomId: "mpr" };
 
 export const sessions: Session[] = [
-  { ...base, id: "checkin", title: "Check-in Begins", summary: "Doors open and badge pick-up.", start: "2026-11-01T11:00:00-08:00", end: "2026-11-01T11:40:00-08:00" },
-  { ...base, id: "welcome", title: "Welcome Session + Theme Intro", summary: "Welcome and the day's theme.", start: "2026-11-01T11:40:00-08:00", end: "2026-11-01T12:00:00-08:00" },
-  { ...base, id: "lecture-1", title: "Lecture #1 (Imam Tabari)", summary: "Opening lecture with Imam Tabari.", start: "2026-11-01T12:10:00-08:00", end: "2026-11-01T13:10:00-08:00" },
-  { ...base, id: "dhuhr", title: "Dhuhr Salah + Refreshments", summary: "Pray together and recharge.", start: "2026-11-01T13:20:00-08:00", end: "2026-11-01T13:45:00-08:00" },
-  { ...base, id: "workshops", title: "Workshop Rotations w Shaykh Taha", summary: "Workshop rotations with Shaykh Taha.", start: "2026-11-01T13:45:00-08:00", end: "2026-11-01T15:00:00-08:00" },
-  { ...base, id: "lunch-asr", title: "Lunch + Asr Salah", summary: "Eat together and pray Asr.", start: "2026-11-01T15:10:00-08:00", end: "2026-11-01T16:00:00-08:00" },
-  { ...base, id: "lecture-2", title: "Lecture #2 (Mufti Shadman)", summary: "Lecture with Mufti Shadman.", start: "2026-11-01T16:00:00-08:00", end: "2026-11-01T17:00:00-08:00" },
-  { ...base, id: "maghrib", title: "Maghrib", summary: "Pray Maghrib together.", start: "2026-11-01T17:00:00-08:00", end: "2026-11-01T17:20:00-08:00" },
-  { ...base, id: "lecture-3", title: "Lecture #2 (Shaykh Bilal)", summary: "Closing lecture with Shaykh Bilal.", start: "2026-11-01T17:30:00-08:00", end: "2026-11-01T18:30:00-08:00" },
-  { ...base, id: "night-market", title: "Night Market", summary: "Food, stalls and company into the night.", start: "2026-11-01T18:30:00-08:00", end: "2026-11-01T20:00:00-08:00" },
+  { ...base, id: "checkin", title: "Check-in begins", start: at("11:00"), end: at("11:30") },
+  { ...base, id: "welcome", title: "Welcome session + theme intro", start: at("11:30"), end: at("12:00") },
+  { ...base, id: "lecture-1", title: "Nurturing Your Community in Service of Allah SWT", summary: "Lecture #1", start: at("12:00"), end: at("13:00") },
+  { ...base, id: "dhuhr", title: "Dhuhr Salah", start: at("13:10"), end: at("13:30") },
+  { ...base, id: "lunch", title: "Lunch", start: at("13:30"), end: at("14:00") },
+  { ...base, id: "workshops", title: "Workshop rotations", start: at("14:00"), end: at("15:15") },
+  { ...base, id: "asr", title: "Asr Salah", start: at("15:15"), end: at("15:45") },
+  { ...base, id: "lecture-2", title: "Walking on the Earth with Humility", summary: "Lecture #2", start: at("15:45"), end: at("16:45") },
+  { ...base, id: "announcements", title: "Announcements", start: at("16:45"), end: at("17:00") },
+  { ...base, id: "maghrib", title: "Maghrib", start: at("17:00"), end: at("17:30") },
+  { ...base, id: "lecture-3", title: "Practicing Moderation in Your Checkbook and Life", summary: "Lecture #3", start: at("17:30"), end: at("18:30") },
+  { ...base, id: "closing", title: "Closing remarks", start: at("18:30"), end: at("18:40") },
+  { ...base, id: "night-market", title: "Night market", start: at("18:40"), end: at("18:40") },
 ];

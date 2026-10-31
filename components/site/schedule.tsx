@@ -5,9 +5,9 @@ import { siteConfig } from "@/lib/site-config";
 
 const day = siteConfig.dateText.replace(/, \d{4}$/, ""); // "Sunday, November 1": the year is in the page title above
 
-// The day as a printed menu: each session's title, a dotted leader and its start time, with its one-line summary
-// underneath. The rows rise in turn once (data-anim="stagger"); without JS or with reduced motion they simply show.
-// Session titles, summaries and times are placeholders until the programme is final (see data/sessions.ts).
+// The day as a printed menu: each session's title, a dotted leader and its start time, with its optional one-line
+// summary underneath (the lectures' numbers). The rows rise in turn once (data-anim="stagger"); without JS or with reduced motion they simply show.
+// The programme is in data/sessions.ts (tentative until the organisers confirm it).
 export function Schedule() {
   return (
     <Section id="schedule">
@@ -24,7 +24,7 @@ export function Schedule() {
               <span className="menu-dots" aria-hidden="true" />
               <time className="menu-time" dateTime={s.start}>{formatTime(s.start, siteConfig.timeZone)}</time>
             </div>
-            <p className="menu-summary">{s.summary}</p>
+            {s.summary && <p className="menu-summary">{s.summary}</p>}
           </li>
         ))}
       </ol>

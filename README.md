@@ -1,7 +1,7 @@
 # Tarbiyyah Conference 2026
 
 Website for the **Tarbiyyah Conference**, presented by MSA at UC San Diego.
-Sunday, November 1, 2026 · 12 PM – 8 PM · Multipurpose Room (MPR), Student Services Center.
+Sunday, November 1, 2026 · 11 AM – 6:40 PM · Multipurpose Room (MPR), Student Services Center.
 
 A single-page static site: an opening-night hero, the day's schedule, speakers, venue map, last year's photos, FAQ and
 a Get tickets call to action. The goal of the page is to get people to the ticket link quickly.

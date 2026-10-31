@@ -12,5 +12,6 @@ export const sponsors: Sponsor[] = [
   { id: "cair-ca", name: "CAIR California", logo: { src: "/sponsors/Full-Color_Logo_CAIR_CA.svg", width: 1061, height: 336 } },
   { id: "mpac", name: "MPAC", logo: { src: "/sponsors/MPAC-Short-BlueBlack.webp", width: 520, height: 222 } },
   { id: "idea", name: "IDEA", logo: { src: "/sponsors/IDEA.webp", width: 499, height: 229 } },
+  { id: "mas", name: "MAS San Diego", logo: { src: "/sponsors/MAS.webp", width: 520, height: 160 } },
   { id: "zakat-foundation", name: "Zakat Foundation", logo: { src: "/sponsors/ZakatFoundation.webp", width: 260, height: 260 } },
 ];
